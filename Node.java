@@ -1,14 +1,25 @@
 public class Node{
- public Node(String value){
+    public Node(String value){
 
- }
- private String data;
- private Node next,prev;
- public static String get(int index) {
-   if (index < 0 || index >= data.size()) {
-     throw new IllegalArgumentException("Invalid Index");
-   } else {
-
-   }
- }
+    }
+    private String data;
+    private Node next,prev;
+    private String getData() {
+        return Node.data;
+    }
+    private void setData(String newData) {
+        Node.data = newData;
+    }
+    private Node getNext() {
+        return Node.next;
+    }
+    private void setNext(Node newNext) {
+        Node.next = newNext;
+    }
+    private Node getPrev() {
+        return Node.prev;
+    }
+    private void setPrev(Node newPrev) {
+        Node.prev = newPrev;
+    }
 }

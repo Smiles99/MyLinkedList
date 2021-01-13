@@ -125,5 +125,6 @@ public class MyLinkedList {
         Node start = other.start;
         start.setNext(end);
         end.setPrev(start);
+        other.size = 0;
     }
 }

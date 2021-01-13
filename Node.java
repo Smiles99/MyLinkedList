@@ -1,25 +1,27 @@
-public class Node{
-    public Node(String value){
-
-    }
-    private String data;
-    private Node next,prev;
-    private String getData() {
-        return Node.data;
-    }
-    private void setData(String newData) {
-        Node.data = newData;
-    }
-    private Node getNext() {
-        return Node.next;
-    }
-    private void setNext(Node newNext) {
-        Node.next = newNext;
-    }
-    private Node getPrev() {
-        return Node.prev;
-    }
-    private void setPrev(Node newPrev) {
-        Node.prev = newPrev;
-    }
+public class Node {
+  public Node(String value) {
+    data = value;
+    next = null;
+    prev = null;
+  }
+  private String data;
+  private Node next, prev;
+  public String getData() {
+    return data;
+  }
+  public void setData(String value) {
+    data = value;
+  }
+  public Node getNext() {
+    return next;
+  }
+  public void setNext(Node node) {
+    next = node;
+  }
+  public Node getPrev() {
+    return prev;
+  }
+  public void setPrev(Node node) {
+    prev = node;
+  }
 }

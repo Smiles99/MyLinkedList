@@ -78,7 +78,7 @@ public class MyLinkedList {
         }
         return result;
     }
-    public String reversedToString() {
+    public String toStringReversed() {
         String result = "";
         Node current = end;
         String delimiter = "";
@@ -118,5 +118,12 @@ public class MyLinkedList {
         }
         size--;
         return removed;
+    }
+    public void extend(MyLinkedList other) {
+        this.size = this.size + other.size;
+        Node end = this.end;
+        Node start = other.start;
+        start.setNext(end);
+        end.setPrev(start);
     }
 }

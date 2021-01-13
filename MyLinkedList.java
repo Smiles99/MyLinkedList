@@ -1,4 +1,5 @@
 import java.lang.IndexOutOfBoundsException;
+import java.util.*;
 
 public class MyLinkedList {
     private int size;
@@ -27,20 +28,30 @@ public class MyLinkedList {
     }
     public void add(int index, String value) {
         if (index < 0) throw new IndexOutOfBoundsException();
-        if (index >= size) throw new IndexOutOfBoundsException();
+        if (index > size) throw new IndexOutOfBoundsException();
         Node node = new Node(value);
-        Node current = start;
-        for (int i=0; i< index; i++) {
-            current = current.getNext();
+        if (size == 0) {
+            add(value);
+            return;
         }
-        node.setNext(current);
-        node.setPrev(current.getPrev());
-        current.setPrev(node);
-        if (index == 0) {
-            start = node;
-        }
-        if (index == size - 1) {
+        if (index == size) {
+            node.setPrev(end);
+            end.setNext(node);
             end = node;
+        } else if (index == 0) {
+            node.setNext(start);
+            start.setPrev(node);
+            start = node;
+        } else {
+            Node current = start;
+            for (int i=0; i< index; i++) {
+                current = current.getNext();
+            }
+            Node prev = current.getPrev();
+            node.setNext(current);
+            node.setPrev(prev);
+            current.setPrev(node);
+            prev.setNext(node);
         }
         size++;
     }
@@ -77,5 +88,35 @@ public class MyLinkedList {
             current = current.getPrev();
         }
         return result;
+    }
+    public String remove(int index) {
+        if (index < 0) throw new IndexOutOfBoundsException();
+        if (index >= size) throw new IndexOutOfBoundsException();
+        String removed;
+        if (size == 1) {
+            removed = start.getData();
+            start = null;
+            end = null;
+        } else if (index == size-1) {
+            removed = end.getData();
+            end = end.getPrev();
+            end.setNext(null);
+        } else if (index == 0) {
+            removed = start.getData();
+            start = start.getNext();
+            start.setPrev(null);
+        } else {
+            Node current = start;
+            for (int i=0; i< index; i++) {
+                current = current.getNext();
+            }
+            Node prev = current.getPrev();
+            Node next = current.getNext();
+            prev.setNext(next);
+            next.setPrev(prev);
+            removed = current.getData();
+        }
+        size--;
+        return removed;
     }
 }
